@@ -12,7 +12,7 @@ class ContactPage {
   };
 
   render() {
-    let title = 'Contact Us';
+    let title = 'Portland Recommendations';
     this.context.onSetTitle(title);
     return (
       <div className="ContactPage">
