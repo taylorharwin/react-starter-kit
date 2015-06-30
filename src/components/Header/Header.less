@@ -5,12 +5,11 @@
 @brand-color: #61dafb;
 
 .Header {
-  background: #373277;
+  background: @wedding-green;
   color: #fff;
 
   &-container {
     margin: 0 auto;
-    padding: 20px 0;
     max-width: @max-content-width;
   }
 
@@ -24,13 +23,20 @@
 
   }
 
+  .subHead {
+    text-align: center;
+    font-size: 36px;
+    font-family: @wedding-font;
+  }
+
   &-brandTxt {
     margin-left: 10px;
   }
 
   &-nav {
-    float: right;
-    margin-top: 6px;
+    text-align: center;
+    height: 40px;
+
   }
 
   &-banner {
@@ -39,16 +45,15 @@
 
   &-bannerTitle {
     margin: 0;
-    padding: 10px;
     font-weight: normal;
-    font-size: 4em;
+    font-size: 36px;
     line-height: 1em;
   }
 
   &-bannerDesc {
     padding: 0;
     color: rgba(255, 255, 255, .5);
-    font-size: 1.25em;
+    font-size: 36px;
     margin: 0;
   }
 }

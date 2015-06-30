@@ -25,7 +25,11 @@ class ContentPage {
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
           }
-          <div dangerouslySetInnerHTML={{__html: this.props.content || ''}} />
+            <h3 className="explanation">
+              <div>This is a website for the wedding of Jillian Underwood and Taylor Harwin</div> 
+              <div>We will update it with logistics and timelines closer to the event</div>
+              <div>Until then it is, as they say on the Internet, <i>Under Construction</i></div>
+            </h3>
         </div>
       </div>
     );

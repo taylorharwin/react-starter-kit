@@ -12,12 +12,17 @@ class Header {
   render() {
     return (
       <div className="Header">
+        <Navigation className="Header-nav" />
         <div className="Header-container">
-            <span className="Header-brandTxt">Jill and Taylors Wedding</span>
-          <Navigation className="Header-nav" />
+       
           <div className="Header-banner">
-            <p className="Header-bannerDesc">November 14, 2015</p>
+            
           </div>
+        </div>
+         <div className="subHead">
+            <div>Jill and Taylor&#39;s Wedding </div>
+            <div>November 14, 2015</div>
+            <div>PDX</div>
         </div>
       </div>
     );
