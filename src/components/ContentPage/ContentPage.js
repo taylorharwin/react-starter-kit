@@ -17,6 +17,7 @@ class ContentPage {
     onSetTitle: PropTypes.func.isRequired
   };
 
+
   render() {
     this.context.onSetTitle(this.props.title);
     return (
@@ -26,13 +27,12 @@ class ContentPage {
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
           }
-            <h3 className="explanation">
-              <div>This is a website for the wedding of Jillian Underwood and Taylor Harwin</div> 
-              <div>We will update it with logistics and timelines closer to the event</div>
+              <div className="ContentPage-announce"><b>Whats happening:</b> Jill and Taylor are getting married! 
+              <div>We will update this page with more logistics closer to the event</div>
               <div>Until then it is, as they say on the Internet, <i>Under Construction</i></div>
-            </h3>
-          </div>
-
+              </div>
+              <a className="twitter-timeline" href="https://twitter.com/taylorandjill" data-widget-id="617424235049299969">Tweets by @taylorandjill</a>
+              </div>
           <div className="ContentPage-rightColumn">
             <h1>Where to stay</h1>
           </div>
