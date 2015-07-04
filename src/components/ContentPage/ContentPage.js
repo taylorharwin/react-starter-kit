@@ -22,6 +22,7 @@ class ContentPage {
     return (
       <div className="ContentPage">
         <div className="ContentPage-container">
+          <div className="ContentPage-leftColumn">
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
           }
@@ -30,7 +31,15 @@ class ContentPage {
               <div>We will update it with logistics and timelines closer to the event</div>
               <div>Until then it is, as they say on the Internet, <i>Under Construction</i></div>
             </h3>
-        </div>
+          </div>
+
+          <div className="ContentPage-rightColumn">
+            <h1>Where to stay</h1>
+          </div>
+          <div className="ContentPage-rightColumn">
+            <h1 className="explanation">Registry Lists</h1>
+          </div>
+      </div>
       </div>
     );
   }

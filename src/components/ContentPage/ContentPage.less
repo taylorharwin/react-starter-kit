@@ -7,10 +7,39 @@
   &-container {
     margin: 0 auto;
     height: 100%;
-    max-width: @max-content-width;
+    max-width: 90%;
     background-color: @wedding-linen;
-    text-align: center;
   }
+
+  &-rightColumn {
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 40%;
+    background-color: #a2d5e8;
+    left: 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+
+  }
+
+  &-leftColumn {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 60%;
+    background-color: white;
+    margin-right: -1px;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width:500px) {
+    &-rightColumn, &-leftColumn {
+      position: static;
+      width: 100%;
+    }
+  }
+
 
   h1 {
     font-family: @wedding-font;
