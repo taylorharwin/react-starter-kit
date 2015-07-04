@@ -12,7 +12,9 @@ class Header {
   render() {
     return (
       <div className="Header">
-        <Navigation className="Header-nav" />
+        <Navigation
+        path={this.props.path} 
+        className="Header-nav" />
         <div className="Header-container">
        
           <div className="Header-banner">

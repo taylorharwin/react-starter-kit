@@ -3,25 +3,67 @@
 
 @import '../variables.less';
 
+
 .Navigation {
+  height: 46px;
+  background-color: white;
+
+  &-img {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0 5px 5px 5px;
+  }
+
+
+
+  &-cat {
+    display: inline;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 7px;
+    left: 50%;
+  }
+    @media screen and (max-width:500px) {
+    &-cat {
+      left: 90%;
+    }
+  }
+
 
   &-link {
     display: inline-block;
-    padding: 3px 8px;
+    padding: 4px 10px 2px 8px;
+    color: #000000;
     text-decoration: none;
-    font-family: @wedding-font;
     font-size: 1.125em; // ~28px
+    bottom: 10px;
+
+  &-linkActive {
+    display: inline-block;
+    padding: 4px 10px 2px 8px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.125em; // ~28px
+    bottom: 10px;
+    border-bottom: 4px solid #4099FF;
+    }
+
+
 
 
 
     &,
     &:active,
     &:visited {
-      color: rgba(255, 255, 255, .6);
+      color: #4099FF;
     }
 
     &:hover {
-      color: rgba(255, 255, 255, 1);
+      color: #000080;
+      border-bottom: 4px solid #4099FF;
+
+
     }
 
     &--highlight {

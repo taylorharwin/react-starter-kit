@@ -48,7 +48,8 @@ class App {
 
     return component ? (
       <div>
-        <Header />
+        <Header 
+          path={this.props.path}/>
         {component}
         <Footer />
       </div>

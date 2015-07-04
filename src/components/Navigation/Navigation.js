@@ -9,6 +9,7 @@ import Link from '../../utils/Link';
 @withStyles(styles)
 class Navigation {
 
+
   static propTypes = {
     className: PropTypes.string
   };
@@ -16,8 +17,20 @@ class Navigation {
   render() {
     return (
       <div className={classNames(this.props.className, 'Navigation')} role="navigation">
-        <a className="Navigation-link" href="/" onClick={Link.handleClick}>Wedding Details</a>
-        <a className="Navigation-link" href="/recs" onClick={Link.handleClick}>Portland Recommendations</a>
+      <span className="Navigation-links">
+        <a className="Navigation-link" href="/" onClick={Link.handleClick}>
+           <span className="Navigation-img"> @
+          </span>
+        Connect</a>
+           <img className="Navigation-cat" 
+        src="https://s.yimg.com/fz/api/res/1.2/.dpvzfQ5SZMLpVEC3pA6Jw--/YXBwaWQ9c3JjaGRkO2g9NzkyO3E9OTU7dz02MTI-/http://2.bp.blogspot.com/_jFXb3jnqUa8/TK82vE2vCsI/AAAAAAAABM8/x5TEUzRTlRk/s1600/CatSilhouette1.jpg">
+        </img>
+        <a className="Navigation-link" href="/recs" onClick={Link.handleClick}>
+          <span className="Navigation-img"> #
+          </span>
+        Discover</a>
+      </span>
+     
       </div>
     );
   }
