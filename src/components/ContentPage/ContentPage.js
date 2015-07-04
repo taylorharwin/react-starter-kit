@@ -43,7 +43,7 @@ class ContentPage {
             <iframe className="ContentPage-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.4964304343316!2d-122.6573445!3d45.52021479999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495a0a68254de97%3A0xecaf9f21ed9726a8!2sCyril&#39;s+at+Clay+Pigeon+Winery!5e0!3m2!1sen!2sus!4v1436044025677"></iframe>
             </div>
           </div>
-          <div className="ContentPage-rightColumn">
+          <div className="ContentPage-rightColumn ContentPage-registry">
             <h1 className="explanation">Registry Lists</h1>
           </div>
       </div>
