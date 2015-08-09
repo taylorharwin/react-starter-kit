@@ -40,7 +40,9 @@ class Navigation {
           </span>
         Discover</a>
       </span>
-     
+        <span className="Navigation-right">
+          November 14, Portland OR
+        </span>
       </div>
     );
   }

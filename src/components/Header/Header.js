@@ -22,9 +22,7 @@ class Header {
           </div>
         </div>
          <div className="subHead">
-            <div>Jill and Taylor&#39;s Wedding </div>
-            <div>November 14, 2015</div>
-            <div>PDX</div>
+            
         </div>
       </div>
     );
