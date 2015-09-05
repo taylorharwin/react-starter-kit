@@ -5,6 +5,10 @@ import styles from './ContentPage.less';
 import withStyles from '../../decorators/withStyles';
 var $ = require('jquery');
 var _ = require('underscore');
+var Firebase = require('firebase');
+var myDataRef = new Firebase('https://taylorandjill.firebaseio.com');
+var musicRef = myDataRef.child('music');
+var rsvpRef = myDataRef.child('rsvp');
 
 @withStyles(styles)
 class ContentPage {
@@ -15,61 +19,25 @@ class ContentPage {
     title: PropTypes.string
   };
 
-  getInitialState(){
-    return {
-      yesno: 'yes',
-      guests: '',
-      music: ''
-    }
-  };
-
-
-  handleYesNoChange(e){
-    this.setState({
-      yesno: e.target.value
-    })
-  };
-  handleMusicChange(e){
-    this.setState({
-      music: e.target.value
-    })
-  };
-  handleGuestChange(e){
-    this.setState({
-      music: e.target.value
-    })
-  };
-
   postContactToGoogle(e){
     e.preventDefault();
-    var yes = React.findDOMNode(this.refs.yes).value;
-    var no = React.findDOMNode(this.refs.no).value;
+    var yes = React.findDOMNode(this.refs.yes).checked;
+    var no = React.findDOMNode(this.refs.no).checked;
     var guests = React.findDOMNode(this.refs.guests).value;
     var music = React.findDOMNode(this.refs.music).value;
 
-    $.ajax({
-        url: "https://docs.google.com/forms/d/1YDfih9MMnzFAplwXqSe1H5hKjZsZORKX4L7hlyJtg14/formResponse",
-        data: { 
-        "entry.141907784": yes,
-        "entry.2027375146": guests, 
-        "entry.1159374558":music
-        },
-        type: "POST",
-        crossDomain: true,
-        dataType: "xml",
-        statusCode: {
-            0: function () {
-                console.log('thanks!');
-            },
-            200: function () {
-                console.log('thanks a bunch');
-            }
-        }
-    });
-
-
-
-    console.log(yes, no, guests, music);
+    if (guests){
+      rsvpRef.child(guests).set({
+        guests: guests,
+        canCome: yes
+      }, _.bind(this.handleFormComplete, this));
+    }
+    if (music){
+      musicRef.child(guests).set({
+        suggestedBy: guests,
+        music: music
+      }, _.bind(this.handleFormComplete, this));
+    }
   };
 
   static contextTypes = {
@@ -84,14 +52,16 @@ class ContentPage {
 
   handleFormComplete(){
     console.log('form submitted successfully');
+    React.findDOMNode(this.refs.guests).value = '';
+    React.findDOMNode(this.refs.music).value = '';
   };
-
 
   render() {
     this.context.onSetTitle(this.props.title);
     return (
       <div className="ContentPage">
-        <div className="ContentPage-container">
+        <div className="ContentPage-container"
+              ref="mainPage">
         <div>
           <img className="ContentPage-weddingLogo" src="weddingLogo.png"/>
         </div>
@@ -99,28 +69,61 @@ class ContentPage {
               <a className="twitter-timeline" href="https://twitter.com/taylorandjill" data-widget-id="617424235049299969">Tweets by @taylorandjill</a>
               </div>
           <div className="ContentPage-rightColumn">
-            <h1>Key Locations</h1>
+            <h1 className="ContentPage-explanation">Key Locations</h1>
             <div>
-            <iframe className="ContentPage-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.4964304343316!2d-122.6573445!3d45.52021479999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495a0a68254de97%3A0xecaf9f21ed9726a8!2sCyril&#39;s+at+Clay+Pigeon+Winery!5e0!3m2!1sen!2sus!4v1436044025677"></iframe>
-            </div>
+          <iframe className="ContentPage-map" src="https://mapsengine.google.com/map/embed?mid=zm-8AoblbN8w.kSi1YDJOX8K4" width="640" height="480"></iframe>            </div>
           </div>
           <div className="ContentPage-righterColumn">
-            <h1 className="explanation">RSVP</h1>
+            <h1 className="ContentPage-explanation">RSVP</h1>
             <div className='rsvp'>
               <form onSubmit={_.bind(this.postContactToGoogle, this)}>
-              <span>Your name(s):</span>
-                <input ref="guests" name="guests" type="text"onChange={this.handleGuestChange}/>
-                <div>Can you make it t\o our wedding on November 14?</div>
-                <input ref="yes"type="radio" name="yesno" value="Yes" onChange={this.handleYesNoChange} defaultChecked={true} />
-                Yes
-                <br/>
-                <input ref="no" type="radio" name="yesno" value="No" onChange={this.handleYesNoChange}/>
-                No
-                <div>Are there any songs you would like to suggest for the wedding playlist?</div>
-                <input ref="music" name="music" type="text" onChange={this.handleMusicChange}/>
-                <input type="submit">Send</input> 
+                <div className="ContentPage-question">Your name(s): 
+                  <input ref="guests" name="guests" type="text"/>
+                </div>
+                <div>
+                <div className="ContentPage-question">
+                  <span className="ContentPage-prompt">Are you able to attend our wedding in Portland, Oregon on November 14?:
+                  </span>
+                </div>
+                  <div className="ContentPage-question">
+                  <div className="ContentPage-button">
+                  Yes
+                  <input ref="yes"type="radio" name="yesno" value="Yes" defaultChecked={true} />
+                  </div>
+                  <div className="ContentPage-button">
+                  No
+                  <input ref="no" type="radio" name="yesno" value="No" />
+                  </div>
+                  </div>
+                  </div>
+                <div>
+                <span className="ContentPage-prompt">Any songs youd like to suggest for the wedding playlist?:
+                </span>
+                <input ref="music" name="music" type="text" />
+                </div>
+                <input className="ContentPage-submitForm" type="submit" value="Send" /> 
               </form>
+              <div className="ContentPage-middleColumn">
+              <h1 className="ContentPage-explanation">Our registries</h1>
+              <div>
+                <div className="ContentPage-registry">
+                  <a href='http://www.crateandbarrel.com/gift-registry/jillian-underwood-and-taylor-harwin/r5401997' target="_blank">
+                  Crate & Barrel
+                  </a>
+                </div>
+                <div className="ContentPage-registry">
+                  <a href='http://www.amazon.com/registry/wedding/2XB4XWRICXKGL' target="_blank">
+                  Amazon
+                  </a>
+                </div>
+
+
+              </div>
             </div>
+            </div>
+
+
+
           </div>
       </div>
       </div>
